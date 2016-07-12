@@ -1,0 +1,6 @@
+hostname
+getty
+mount-system
+mount-swap
+udevd
+udev-settle

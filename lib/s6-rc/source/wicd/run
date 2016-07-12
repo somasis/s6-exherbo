@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+
+wicd -f

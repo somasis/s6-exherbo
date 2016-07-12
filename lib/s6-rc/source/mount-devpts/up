@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+
+if { chgrp tty /dev/tty }
+if { mkdir /dev/pts }
+mount -t devpts -o mode=0620,gid=5,nosuid,noexec devpts /dev/pts

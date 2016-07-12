@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+
+if { umount -n /dev/pts } rmdir /dev/pts

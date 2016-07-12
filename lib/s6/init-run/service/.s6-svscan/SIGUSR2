@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+
+foreground { "/usr/lib/s6/change" }
+s6-svscanctl -0 -- /run/s6/service

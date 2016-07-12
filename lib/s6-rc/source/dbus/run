@@ -1,0 +1,5 @@
+#!/bin/execlineb -P
+
+if { mkdir -p /run/dbus }
+if { dbus-uuidgen --ensure }
+dbus-daemon --system --nofork --nopidfile

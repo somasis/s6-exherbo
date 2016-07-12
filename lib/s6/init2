@@ -1,0 +1,7 @@
+#!/bin/execlineb -P
+
+if { s6-rc-init /run/s6/service }
+
+# Prefer state-normal to state-basic
+ifelse { pipeline { s6-rc-db list bundles } grep -q state-normal } { s6-rc -u change state-normal } { s6-rc -u change state-basic }
+

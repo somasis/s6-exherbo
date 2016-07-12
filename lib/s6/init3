@@ -1,0 +1,10 @@
+#!/bin/execlineb -S0
+
+cd /
+fdclose 0
+redirfd -w 1 /dev/console
+fdmove -c 2 1
+
+foreground { /usr/libexec/s6/init3.sh }
+
+s6-${1} -f

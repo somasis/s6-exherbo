@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+
+background { udevadm trigger }
+udevadm settle

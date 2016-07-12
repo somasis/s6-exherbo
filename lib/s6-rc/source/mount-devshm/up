@@ -1,0 +1,4 @@
+#!/bin/execlineb -P
+
+if { mkdir /dev/shm }
+mount -t tmpfs -o mode=1777,nosuid,nodev shm /dev/shm

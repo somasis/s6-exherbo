@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+
+mount -n -t proc -o nosuid,noexec,nodev proc /proc

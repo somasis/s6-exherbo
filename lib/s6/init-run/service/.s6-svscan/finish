@@ -1,0 +1,8 @@
+#!/bin/execlineb -S0
+
+cd /
+redirfd -w 2 /dev/console
+fdmove -c 1 2
+wait -r -- { }
+/usr/lib/s6/init3 ${@}
+

@@ -1,0 +1,43 @@
+#!/bin/execlineb -P
+
+# Start with a reasonable environment
+export PATH "/usr/bin"
+cd /
+s6-setsid -qb --
+umask 022
+fdclose 0
+
+if { /usr/libexec/s6/welcome.sh }
+
+if { mount -n -t tmpfs -o rw,nosuid,nodev,mode=07555 tmpfs /run }
+
+# Populate with an initial scan directory.
+if { cp -ar "/usr/lib/s6/init-run" "/run/s6" }
+
+# Close any remaining handles
+fdclose 1 fdclose 2
+
+redirfd -r 0 /dev/null
+redirfd -wnb 1 /run/s6/log/uncaught/fifo
+fdmove -c 2 1
+
+# Empty the environment, start with a one created by the installed defaults,
+# then the user's env directory.
+emptyenv -p
+s6-envdir -I -- "/usr/lib/s6/init-env"
+s6-envdir -I -- "/etc/s6/init-env"
+
+cd /run/s6/service
+
+backtick TZ { /usr/libexec/s6/timezone.sh }
+
+# And lastly, begin supervising...
+background {
+    s6-setsid
+    redirfd -w 1 /run/s6/service/log/fifo
+    /usr/lib/s6/init2
+}
+unexport !
+
+s6-svscan -s -t0
+
