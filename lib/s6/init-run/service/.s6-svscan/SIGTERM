@@ -1,4 +1,5 @@
 #!/bin/execlineb -P
 
-foreground { "/usr/lib/s6/change" }
+# Terminate (send SIGTERM to all supervised services, SIGHUP to all supervised loggers, then finish)
+foreground { s6-rc -da change }
 s6-svscanctl -t -- /run/s6/service

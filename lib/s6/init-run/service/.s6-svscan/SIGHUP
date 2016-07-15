@@ -1,4 +1,5 @@
 #!/bin/execlineb -P
 
-foreground { "/usr/lib/s6/change" }
+# Hangup (kill all supervised processes then finish)
+foreground { s6-rc -da change }
 s6-svscanctl -h -- /run/s6/service

@@ -1,4 +1,5 @@
 #!/bin/execlineb -P
 
-foreground { "/usr/lib/s6/change" }
+# Halt (terminate, then halt the machine)
+foreground { s6-rc -da change }
 s6-svscanctl -0 -- /run/s6/service
