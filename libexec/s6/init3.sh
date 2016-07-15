@@ -2,9 +2,6 @@
 
 TERM=linux clear
 
-echo "Taking state-basic down..."
-s6-rc -t 10 -d change state-basic
-
 echo "Sending TERM to all processes..."
 for p in $(pgrep . | grep -Ev "^(1|$$|$PPID)"); do
     kill "$p" >/dev/null 2>&1
