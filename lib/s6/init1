@@ -29,8 +29,6 @@ s6-envdir -I -- "/etc/s6/init-env"
 
 cd /run/s6/service
 
-backtick TZ { /usr/libexec/s6/timezone.sh }
-
 # And lastly, begin supervising...
 background {
     s6-setsid
