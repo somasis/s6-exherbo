@@ -4,5 +4,9 @@ cd /
 redirfd -w 2 /dev/console
 fdmove -c 1 2
 wait -r -- { }
+
+# Kill the logger, `s6-log -p` ignores SIGTERM
+foreground { s6-svc -X -- /run/s6/service/s6-svscan-log }
+
 /usr/lib/s6/init3 ${@}
 
