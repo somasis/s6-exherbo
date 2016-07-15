@@ -27,8 +27,6 @@ emptyenv -p
 s6-envdir -I -- "/usr/lib/s6/init-env"
 s6-envdir -I -- "/etc/s6/init-env"
 
-cd /run/s6/service
-
 # And lastly, begin supervising...
 background {
     s6-setsid
@@ -36,6 +34,8 @@ background {
     /usr/lib/s6/init2
 }
 unexport !
+
+cd /run/s6/service
 
 s6-svscan -s -t0
 
