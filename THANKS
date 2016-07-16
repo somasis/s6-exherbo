@@ -1,0 +1,5 @@
+Thanks to Laurent Bercot for writing s6 and s6-rc and creating very detailed and
+very well documented software.
+
+Thanks to Colin Booth for lots of question answering and explaining, and for
+sharing tips and his own configuration (namely the udev stuff).
