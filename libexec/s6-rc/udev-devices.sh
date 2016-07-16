@@ -1,15 +1,15 @@
 #!/bin/sh
 
 # create the static nodes needed before udev
-
-static_nodes=/usr/lib/modules/$(uname -r)/modules.devname
-
-grep -v '^#' "${static_nodes}" | while read line;do
-    file=${line#* }; file=/dev/${file% *}
-    args=${line##* }
-    type=${args:0:1}
-    major=${args/${type}}; major=${major%:*}
-    minor=${args/${type}${major}:}
-    mknod -m 0600 "${file}" "${type}" "${major}" "${minor}"
+kmod static-nodes -f tmpfiles | while read -r type file mode uid gid age arg;do
+    case "${type}" in
+        d|d!)
+            mkdir -m "${mode}" "${file}"
+        ;;
+        *)
+            maj=${arg%:*}
+            min=${arg#*:}
+            mknod -m "${mode}" "${file}" "${type:0:1}" "${maj}" "${min}"
+        ;;
+    esac
 done
-
