@@ -1,0 +1,6 @@
+#!/bin/execlineb -P
+
+foreground { /usr/libexec/s6-rc/udev-devices.sh }
+if { udevadm info --cleanup-db }
+if { udevadm trigger --action=add }
+udevadm settle

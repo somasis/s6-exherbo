@@ -1,6 +1,6 @@
-hostname
 getty
-mount-system
+hostname
 mount-swap
-udevd
-udev-settle
+mount-system
+udev
+udev-devices
