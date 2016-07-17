@@ -10,7 +10,7 @@ kmod static-nodes -f tmpfiles | while read -r type file mode uid gid age arg;do
         *)
             maj=${arg%:*}
             min=${arg#*:}
-            mknod -m "${mode}" "${file}" "${type:0:1}" "${maj}" "${min}"
+            mknod -m "${mode}" "${file}" "${type%!}" "${maj}" "${min}"
         ;;
     esac
 done
