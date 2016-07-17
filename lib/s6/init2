@@ -1,13 +1,8 @@
 #!/bin/execlineb -P
 
+redirfd -w 1 /dev/console
+
 if { s6-rc-init /run/s6/service }
 
-# Try state-normal, else fallback to state-basic
-if -nt {
-    pipeline { s6-rc-db list bundles } grep -q state-normal
-    s6-rc -u change state-normal
-}
-
-redirfd -w 1 /dev/console
-s6-rc -u change state-basic
+/usr/libexec/s6/init2.sh
 
