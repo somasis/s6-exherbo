@@ -2,7 +2,7 @@
 
 # create the static nodes needed before udev
 kmod static-nodes -f tmpfiles | while read -r type file mode uid gid age arg;do
-    [ -e ${name} ] && continue
+    [ -e "${file}" ] && continue
     case "${type}" in
         d|d!)
             mkdir -m "${mode}" "${file}"
