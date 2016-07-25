@@ -3,16 +3,12 @@
 TERM=linux clear
 
 echo "Sending TERM to all processes..."
-for p in $(pgrep . | grep -Ev "^(1|$$|$PPID)"); do
-    kill "$p" >/dev/null 2>&1
-done
+kill -TERM -1
 
 sleep 1
 
 echo "Sending KILL to all processes..." }
-for p in $(pgrep . | grep -Ev "^(1|$$|$PPID)"); do
-    kill -9 "$p" >/dev/null 2>&1
-done
+kill -KILL -1
 
 echo "Syncing disks..."
 sync
