@@ -1,3 +1,1 @@
-#!/bin/execlineb -P
-
 mount -n -t sysfs -o nosuid,noexec,nodev sysfs /sys
